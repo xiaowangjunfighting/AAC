@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/navigation1"
+    app:startDestination="@id/fragment1">
+
+    <include
+        app:graph="@navigation/include_nav_graph"
+        />
+
+    <!--导航图-->
+    <fragment
+        android:id="@+id/fragment1"
+        android:name="com.example.aacinaction.navigation.NavFragment1"
+        android:label="fragment1" >
+        <!--导航动作，从navFragment1到NavFragment2-->
+        <action
+            android:id="@+id/action_navFragment1_to_navFragment32"
+            app:destination="@id/fragment3" />
+        <action
+            android:id="@+id/action_navFragment1_to_navFragment2"
+            app:destination="@id/navigation2" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment3"
+        android:name="com.example.aacinaction.navigation.NavFragment3"
+        android:label="NavFragment3" />
+
+    <action android:id="@+id/action_global_fragment3" app:destination="@id/fragment3"/>
+
+    <!--嵌套图表-->
+<!--
+    <navigation
+        android:id="@+id/navigation2"
+        app:startDestination="@id/fragment2" >
+
+        <fragment
+            android:id="@+id/fragment2"
+            android:name="com.example.aacinaction.navigation.NavFragment2"
+            android:label="NavFragment2">
+            <action
+                android:id="@+id/action_navFragment2_to_navFragment432"
+                app:destination="@id/fragment4" />
+        </fragment>
+
+        <fragment
+            android:id="@+id/fragment4"
+            android:name="com.example.aacinaction.navigation.NavFragment4"
+            android:label="NavFragment4" />
+
+    </navigation>
+-->
+
+    <!--
+        实现嵌套导航：
+            1，Navigation Editor中按住Shift点击navFragment2，navFragment4；
+            2，右键点击navFragment2，选取Move to Nested Graph > New Graph；
+            3，navFragment2，navFragment4作为一个嵌套导航了
+
+         嵌套导航可以用include替换。(include可以引用其他库的导航图)
+    -->
+</navigation>

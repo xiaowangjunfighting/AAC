@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <!--除了java.lang包，其他都要导包-->
+        <import type="android.view.View" />
+
+        <!--user描述了在此布局中使用的属性-->
+        <variable
+            name="user"
+            type="com.example.aacinaction.data.User" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="20dp"
+            android:textSize="24sp"
+            android:text="@{user.name, default=defualtValue}"
+            />
+
+        <TextView
+            android:id="@+id/text2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text1"
+            android:layout_marginTop="20dp"
+            android:textSize="24sp"
+            android:text="@{user.name + String.valueOf(100)}"
+            android:visibility="@{user.name.contains(user.lastName) ? View.VISIBLE: View.GONE}"
+            />
+        <!--
+            若user为null，则user.name为null(int则返回0)，而不会报空指针；
+        -->
+
+
+        <TextView
+            android:id="@+id/text3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text2"
+            android:layout_marginTop="20dp"
+            android:textSize="24sp"
+            android:text="text3"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
